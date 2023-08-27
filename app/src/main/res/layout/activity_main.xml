@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/traderLayout"
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:padding="5dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/burgerImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/grey">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/praporImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/prapor">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/terapevtImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/terapevt">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/skupshikImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/skupshik">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/lijnikImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/lijnik">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/mirImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/mir">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/mechanikImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/mechanik">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/baraholImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/barahol">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/egerImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/eger">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/smotritelImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/smotritel">
+        </ImageButton>
+
+        <ImageButton
+            android:id="@+id/resetImageButton"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/red">
+        </ImageButton>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/treeLayout"
+        android:layout_width="347dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="start"
+        android:orientation="vertical">
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

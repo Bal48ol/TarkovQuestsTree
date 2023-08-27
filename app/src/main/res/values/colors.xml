@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#EF6940</color>
+    <color name="orangeDark">#BF5534</color>
+    <color name="startColor">#EF6940</color>
+    <color name="centerColor">#FF000000</color>
+    <color name="endColor">#EF6940</color>
+    <color name="grey">#818181</color>
+    <color name="red">#FA4046</color>
+
+    <color name="prapor">#5C613B</color>
+    <color name="terapevt">#A6A277</color>
+    <color name="skupshik">#313538</color>
+    <color name="lijnik">#72829E</color>
+    <color name="mir">#2B4F6C</color>
+    <color name="mechanik">#594739</color>
+    <color name="barahol">#CAB787</color>
+    <color name="eger">#9D6C4D</color>
+    <color name="smotritel">#75A9C8</color>
+
+</resources>
