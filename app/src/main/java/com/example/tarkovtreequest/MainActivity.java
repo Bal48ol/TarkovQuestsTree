@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         isAnimating = false;
                     }
-                }, 200);
+                }, 300);
                 isAnimating = true;
             }
         });
@@ -123,14 +123,13 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case MotionEvent.ACTION_UP:
                         isScaling = false;
-                        // Здесь можно выполнить дополнительные действия при отпускании пальца
+                        //действия при отпускании пальца
                         break;
                 }
 
                 return true;
             }
         });
-
 
         praporImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,8 +140,10 @@ public class MainActivity extends AppCompatActivity {
                 treeLayout.removeAllViews();
 
                 // Включите макет из PraporActivity в CustomLinearLayout
-                View praporLayout = getLayoutInflater().inflate(R.layout.activity_prapor, null);
-                treeLayout.addView(praporLayout);
+//                View praporLayout = getLayoutInflater().inflate(R.layout.activity_prapor, null);
+//                treeLayout.addView(praporLayout);
+                Intent intent = new Intent(MainActivity.this, PraporActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -150,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(terapevtImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -157,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(skupshikImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -164,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(lijnikImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -171,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(mirImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -178,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(mechanikImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -185,6 +196,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(baraholImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -192,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(egerImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -199,6 +214,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(smotritelImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 
@@ -206,6 +223,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 animateClick(resetImageButton);
+                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
+                treeLayout.removeAllViews();
             }
         });
 

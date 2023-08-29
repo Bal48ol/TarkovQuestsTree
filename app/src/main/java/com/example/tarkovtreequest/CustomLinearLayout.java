@@ -26,4 +26,8 @@ public class CustomLinearLayout extends LinearLayout {
         // Ваш код обработки события клика здесь
         return super.performClick();
     }
+
+    public void addViewFromActivity(View view) {
+        addView(view);
+    }
 }

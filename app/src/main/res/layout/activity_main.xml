@@ -9,15 +9,18 @@
 
     <com.example.tarkovtreequest.CustomLinearLayout
         android:id="@+id/treeLayout"
-        android:layout_width="1000dp"
-        android:layout_height="1000dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="true"
         android:layout_gravity="center"
-
         android:hardwareAccelerated="true"
         android:orientation="vertical">
 
-
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img4">
+        </ImageView>
 
     </com.example.tarkovtreequest.CustomLinearLayout>
 
