@@ -9,6 +9,7 @@
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
@@ -32,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rootLayout"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        android:layout_marginTop="20dp" /> <!-- Добавлен отступ сверху для разделения дочерних элементов -->
 
 </RelativeLayout>

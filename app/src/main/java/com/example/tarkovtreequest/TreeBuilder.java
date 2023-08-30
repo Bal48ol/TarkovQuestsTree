@@ -49,7 +49,7 @@ public class TreeBuilder {
         descriptionTextView.setText(node.getDescription());
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(50 * level, 0, 0, 0); // Отступы для отображения уровней
+        layoutParams.setMargins(100 , 0, 0, 0); // Отступы для отображения уровней
 
         nodeView.setLayoutParams(layoutParams);
 
