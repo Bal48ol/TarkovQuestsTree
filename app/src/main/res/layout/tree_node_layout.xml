@@ -1,44 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/nodeLayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:padding="10dp"/>
+            android:textSize="16sp"
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/descriptionTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"/>
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="1dp"
-        android:layout_height="20dp">
-    </Space>
+            android:layout_below="@id/nameTextView"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/childrenLayout"
+        android:id="@+id/childLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-    </LinearLayout>
+        android:layout_below="@id/rootLayout"
+        android:orientation="vertical" />
 
-</LinearLayout>
+</RelativeLayout>

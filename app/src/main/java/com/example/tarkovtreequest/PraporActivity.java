@@ -25,7 +25,7 @@ import java.util.List;
 
 public class PraporActivity extends AppCompatActivity {
     private FrameLayout praporLayout;
-    private CustomLinearLayout treeLayout;
+    private RelativeLayout treeLayout;
     private float initialTouchX;
     private float initialTouchY;
     private float initialTranslationX;
@@ -110,7 +110,6 @@ public class PraporActivity extends AppCompatActivity {
         treeBuilder.setDefaultColor(getResources().getColor(R.color.prapor));
         treeBuilder.buildTree(rootNode);
 
-        treeLayout = findViewById(R.id.treeLayout);
         treeLayout.setOnTouchListener(new View.OnTouchListener() {
             private boolean isScaling = false;
             @Override

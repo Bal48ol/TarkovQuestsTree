@@ -5,14 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class TreeBuilder {
     private Context context;
-    private CustomLinearLayout treeContainer;
+    private RelativeLayout treeContainer;
     private int defaultColor;
 
-    public TreeBuilder(Context context, CustomLinearLayout treeContainer) {
+    public TreeBuilder(Context context, RelativeLayout treeContainer) {
         this.context = context;
         this.treeContainer = treeContainer;
     }
@@ -27,7 +28,12 @@ public class TreeBuilder {
 
     public void buildTree(TreeNode rootNode) {
         treeContainer.removeAllViews();
-        buildTreeNode(rootNode, treeContainer, 0);
+        LinearLayout childLayout = new LinearLayout(context); // Создаем контейнер один раз за пределами цикла
+        childLayout.setId(R.id.childLayout);
+        RelativeLayout.LayoutParams childLayoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        childLayoutParams.addRule(RelativeLayout.BELOW, R.id.rootLayout);
+        treeContainer.addView(childLayout, childLayoutParams);
+        buildTreeNode(rootNode, childLayout, 0);
     }
 
     private void buildTreeNode(TreeNode node, LinearLayout parentLayout, int level) {
@@ -35,27 +41,30 @@ public class TreeBuilder {
 
         TextView nameTextView = nodeView.findViewById(R.id.nameTextView);
         TextView descriptionTextView = nodeView.findViewById(R.id.descriptionTextView);
-        LinearLayout rootLayout = nodeView.findViewById(R.id.rootLayout);
-        LinearLayout childrenLayout = nodeView.findViewById(R.id.childrenLayout);
+        RelativeLayout rootLayout = nodeView.findViewById(R.id.rootLayout);
 
         rootLayout.setBackgroundColor(getDefaultColor());
 
         nameTextView.setText(node.getName());
         descriptionTextView.setText(node.getDescription());
 
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) nodeView.getLayoutParams();
-        layoutParams.setMargins(level * 100, 0, 0, 0); // Отступы для отображения уровней
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(50 * level, 0, 0, 0); // Отступы для отображения уровней
+
+        nodeView.setLayoutParams(layoutParams);
 
         parentLayout.addView(nodeView);
 
-        for (TreeNode child : node.getChildren()) {
-            LinearLayout childLayout = new LinearLayout(context);
-            childLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        LinearLayout childLayout = nodeView.findViewById(R.id.childLayout);
+        if (childLayout == null) {
+            childLayout = new LinearLayout(context);
+            childLayout.setId(R.id.childLayout);
             childLayout.setOrientation(LinearLayout.HORIZONTAL);
-            childrenLayout.addView(childLayout);
+            parentLayout.addView(childLayout);
+        }
 
+        for (TreeNode child : node.getChildren()) {
             buildTreeNode(child, childLayout, level + 1);
         }
     }
 }
-
