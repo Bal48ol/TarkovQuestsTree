@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private FrameLayout mainLayout;
     private ImageButton burgerImageButton;
     private ImageButton praporImageButton;
     private ImageButton terapevtImageButton;
@@ -36,12 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton egerImageButton;
     private ImageButton smotritelImageButton;
     private ImageButton resetImageButton;
-    private CustomLinearLayout treeLayout;
-    private float initialTouchX;
-    private float initialTouchY;
-    private float initialTranslationX;
-    private float initialTranslationY;
-    private ScaleGestureDetector scaleGestureDetector;
     private LinearLayout traderLayoutMain;
 
     @Override
@@ -49,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        treeLayout = findViewById(R.id.treeLayout);
+        mainLayout = findViewById(R.id.mainLayout);
         traderLayoutMain = findViewById(R.id.traderLayoutMain);
 
         View traderLayout = getLayoutInflater().inflate(R.layout.trader_layout, traderLayoutMain, false);
@@ -79,8 +76,10 @@ public class MainActivity extends AppCompatActivity {
         smotritelImageButton.setOnClickListener(buttonClickListener);
         resetImageButton.setOnClickListener(buttonClickListener);
 
-
-
+        AnimationDrawable animationDrawable = (AnimationDrawable) mainLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(3000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
     }
 
     @Override

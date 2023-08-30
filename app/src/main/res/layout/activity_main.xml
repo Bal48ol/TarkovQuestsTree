@@ -5,22 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient_list"
+    android:id="@+id/mainLayout"
     tools:context=".MainActivity">
 
     <com.example.tarkovtreequest.CustomLinearLayout
         android:id="@+id/treeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_gravity="center"
         android:hardwareAccelerated="true"
         android:orientation="vertical">
 
-        <ImageView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/img4">
-        </ImageView>
+            android:gravity="center"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:text="Добро пожаловать\nв Дерево квестов игры\nEscape from Tarkov!">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="23sp"
+            android:padding="10dp"
+            android:text="Выбери торговца\nв Панели управления слева,\nчтобы увидеть его дерево квестов.">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="23sp"
+            android:padding="10dp"
+            android:text="Дерево квестов можно\nотдалять, приближать \nи перемещать.">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="30sp"
+            android:padding="10dp"
+            android:text="Удачи, Тарковчанин! :)">
+        </TextView>
 
     </com.example.tarkovtreequest.CustomLinearLayout>
 

@@ -5,12 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PraporActivity extends AppCompatActivity {
+    private FrameLayout praporLayout;
     private CustomLinearLayout treeLayout;
     private float initialTouchX;
     private float initialTouchY;
@@ -45,7 +48,7 @@ public class PraporActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prapor);
 
-
+        praporLayout = findViewById(R.id.praporLayout);
         treeLayout = findViewById(R.id.treeLayout);
         // Установка начального масштаба
         float initialScale = 0.5f;
@@ -80,6 +83,11 @@ public class PraporActivity extends AppCompatActivity {
         egerImageButton.setOnClickListener(buttonClickListener);
         smotritelImageButton.setOnClickListener(buttonClickListener);
         resetImageButton.setOnClickListener(buttonClickListener);
+
+        AnimationDrawable animationDrawable = (AnimationDrawable) praporLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
 
         TreeNode rootNode = new TreeNode("Проба пера", "Убить пять диких и передать два ружья МР-133");
 
