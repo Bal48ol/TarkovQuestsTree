@@ -26,6 +26,15 @@
             android:layout_below="@id/nameTextView"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/childrenTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionTextView"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray" />
+
     </RelativeLayout>
 
     <LinearLayout

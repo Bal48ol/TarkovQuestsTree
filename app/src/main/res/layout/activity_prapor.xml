@@ -9,15 +9,21 @@
     android:id="@+id/praporLayout"
     tools:context=".PraporActivity">
 
-    <RelativeLayout
-        android:id="@+id/treeLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:layout_gravity="center"
-        android:hardwareAccelerated="true"
-        android:orientation="vertical">
-    </RelativeLayout>
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/treeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layout_gravity="center"
+            android:hardwareAccelerated="true"
+            android:orientation="vertical">
+        </RelativeLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/traderLayoutPrapor"

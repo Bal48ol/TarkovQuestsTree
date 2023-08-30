@@ -102,8 +102,8 @@ public class PraporActivity extends AppCompatActivity {
 
         rootNode.addChild(childNode1);
         rootNode.addChild(childNode2);
-        childNode2.addChild(grandchildNode1);
-        childNode2.addChild(grandchildNode2);
+        childNode1.addChild(grandchildNode1);
+        childNode1.addChild(grandchildNode2);
         grandchildNode2.addChild(grandchildNode3);
 
         TreeBuilder treeBuilder = new TreeBuilder(this, treeLayout);
