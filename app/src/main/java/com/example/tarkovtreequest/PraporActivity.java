@@ -25,7 +25,7 @@ import java.util.List;
 
 public class PraporActivity extends AppCompatActivity {
     private FrameLayout praporLayout;
-    private RelativeLayout treeLayout;
+    private CustomLinearLayout treeLayout;
     private float initialTouchX;
     private float initialTouchY;
     private float initialTranslationX;

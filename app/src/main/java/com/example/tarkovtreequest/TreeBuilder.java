@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 public class TreeBuilder {
     private Context context;
-    private RelativeLayout treeContainer;
+    private CustomLinearLayout treeContainer;
     private int defaultColor;
 
-    public TreeBuilder(Context context, RelativeLayout treeContainer) {
+    public TreeBuilder(Context context, CustomLinearLayout treeContainer) {
         this.context = context;
         this.treeContainer = treeContainer;
     }
@@ -54,7 +54,7 @@ public class TreeBuilder {
         childrenTextView.setText(stringBuilder.toString());
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(100, 0, 0, 0); // Отступы для отображения уровней
+        layoutParams.setMargins(0, 0, 0, 0); // Отступы для отображения уровней
 
         nodeView.setLayoutParams(layoutParams);
 
