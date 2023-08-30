@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -106,6 +107,7 @@ public class PraporActivity extends AppCompatActivity {
         grandchildNode2.addChild(grandchildNode3);
 
         TreeBuilder treeBuilder = new TreeBuilder(this, treeLayout);
+        treeBuilder.setDefaultColor(getResources().getColor(R.color.prapor));
         treeBuilder.buildTree(rootNode);
 
         treeLayout = findViewById(R.id.treeLayout);
@@ -152,8 +154,8 @@ public class PraporActivity extends AppCompatActivity {
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.OnScaleGestureListener() {
 
             private float scaleFactor = 1.0f;
-            private float maxScale = 1.2f;
-            private float minScale = 0.5f;
+            private float maxScale = 2.0f;
+            private float minScale = 0.3f;
 
             @Override
             public boolean onScale(ScaleGestureDetector detector) {

@@ -1,5 +1,6 @@
 package com.example.tarkovtreequest;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -11,14 +12,17 @@ import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton smotritelImageButton;
     private ImageButton resetImageButton;
     private LinearLayout traderLayoutMain;
+    private Button rustoreButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +85,16 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(3000);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
+
+        rustoreButton = findViewById(R.id.rustoreButton);
+        rustoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://apps.rustore.ru/app/com.example.tarkovtreequest";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

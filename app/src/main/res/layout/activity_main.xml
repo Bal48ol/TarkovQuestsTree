@@ -35,7 +35,7 @@
             android:fontFamily="sans-serif-thin"
             android:textSize="23sp"
             android:padding="10dp"
-            android:text="Выбери торговца\nв Панели управления слева,\nчтобы увидеть его дерево квестов.">
+            android:text="Выберите торговца\nв Панели управления слева,\nчтобы увидеть его дерево квестов.">
         </TextView>
 
         <TextView
@@ -45,8 +45,17 @@
             android:fontFamily="sans-serif-thin"
             android:textSize="23sp"
             android:padding="10dp"
-            android:text="Дерево квестов можно\nотдалять, приближать \nи перемещать.">
+            android:text="Буду признателен, если вы оцените приложение и напишите рекомендации в RuStore.">
         </TextView>
+
+        <Button
+            android:id="@+id/rustoreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2196F3"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:text="RuStore" />
 
         <TextView
             android:layout_width="match_parent"

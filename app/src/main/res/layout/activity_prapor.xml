@@ -11,8 +11,8 @@
 
     <com.example.tarkovtreequest.CustomLinearLayout
         android:id="@+id/treeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="1000dp"
+        android:layout_height="1000dp"
         android:clickable="true"
         android:layout_gravity="center"
         android:hardwareAccelerated="true"

@@ -6,6 +6,7 @@ public class TreeNode {
     private String name;
     private String description;
     private List<TreeNode> children;
+    private int color;
 
     public TreeNode(String name, String description) {
         this.name = name;
@@ -35,5 +36,13 @@ public class TreeNode {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }
