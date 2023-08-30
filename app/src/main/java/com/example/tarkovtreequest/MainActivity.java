@@ -36,226 +36,50 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton egerImageButton;
     private ImageButton smotritelImageButton;
     private ImageButton resetImageButton;
-    private boolean flag = false;
-    private boolean isAnimating = false;
     private CustomLinearLayout treeLayout;
     private float initialTouchX;
     private float initialTouchY;
     private float initialTranslationX;
     private float initialTranslationY;
     private ScaleGestureDetector scaleGestureDetector;
-    private static final int REQUEST_CODE_ADD_PASSWORD = 1;
+    private LinearLayout traderLayoutMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        burgerImageButton = findViewById(R.id.burgerImageButton);
-        praporImageButton = findViewById(R.id.praporImageButton);
-        terapevtImageButton = findViewById(R.id.terapevtImageButton);
-        skupshikImageButton = findViewById(R.id.skupshikImageButton);
-        lijnikImageButton = findViewById(R.id.lijnikImageButton);
-        mirImageButton = findViewById(R.id.mirImageButton);
-        mechanikImageButton = findViewById(R.id.mechanikImageButton);
-        baraholImageButton = findViewById(R.id.baraholImageButton);
-        egerImageButton = findViewById(R.id.egerImageButton);
-        smotritelImageButton = findViewById(R.id.smotritelImageButton);
-        resetImageButton = findViewById(R.id.resetImageButton);
-
         treeLayout = findViewById(R.id.treeLayout);
+        traderLayoutMain = findViewById(R.id.traderLayoutMain);
 
-        burgerImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (isAnimating) {
-                    return;
-                }
-                animateClick(burgerImageButton);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (!flag) {
-                            moveButtonsToLeft();
-                            flag = true;
-                        } else {
-                            moveButtonsToRight();
-                            flag = false;
-                        }
-                        isAnimating = false;
-                    }
-                }, 300);
-                isAnimating = true;
-            }
-        });
+        View traderLayout = getLayoutInflater().inflate(R.layout.trader_layout, traderLayoutMain, false);
+        traderLayoutMain.addView(traderLayout);
+        burgerImageButton = traderLayout.findViewById(R.id.burgerImageButton);
+        praporImageButton = traderLayout.findViewById(R.id.praporImageButton);
+        terapevtImageButton = traderLayout.findViewById(R.id.terapevtImageButton);
+        skupshikImageButton = traderLayout.findViewById(R.id.skupshikImageButton);
+        lijnikImageButton = traderLayout.findViewById(R.id.lijnikImageButton);
+        mirImageButton = traderLayout.findViewById(R.id.mirImageButton);
+        mechanikImageButton = traderLayout.findViewById(R.id.mechanikImageButton);
+        baraholImageButton = traderLayout.findViewById(R.id.baraholImageButton);
+        egerImageButton = traderLayout.findViewById(R.id.egerImageButton);
+        smotritelImageButton = traderLayout.findViewById(R.id.smotritelImageButton);
+        resetImageButton = traderLayout.findViewById(R.id.resetImageButton);
 
-        treeLayout = findViewById(R.id.treeLayout);
-        treeLayout.setOnTouchListener(new View.OnTouchListener() {
-            private boolean isScaling = false;
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                scaleGestureDetector.onTouchEvent(event);
+        ButtonClickListener buttonClickListener = new ButtonClickListener(traderLayoutMain, this);
+        burgerImageButton.setOnClickListener(buttonClickListener);
+        praporImageButton.setOnClickListener(buttonClickListener);
+        terapevtImageButton.setOnClickListener(buttonClickListener);
+        skupshikImageButton.setOnClickListener(buttonClickListener);
+        lijnikImageButton.setOnClickListener(buttonClickListener);
+        mirImageButton.setOnClickListener(buttonClickListener);
+        mechanikImageButton.setOnClickListener(buttonClickListener);
+        baraholImageButton.setOnClickListener(buttonClickListener);
+        egerImageButton.setOnClickListener(buttonClickListener);
+        smotritelImageButton.setOnClickListener(buttonClickListener);
+        resetImageButton.setOnClickListener(buttonClickListener);
 
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        if (!scaleGestureDetector.isInProgress()) {
-                            initialTouchX = event.getRawX();
-                            initialTouchY = event.getRawY();
-                            initialTranslationX = treeLayout.getTranslationX();
-                            initialTranslationY = treeLayout.getTranslationY();
-                        }
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        if (event.getPointerCount() > 1 || scaleGestureDetector.isInProgress()) {
-                            isScaling = true;
-                            // Если масштабируется или используются несколько пальцев, сбросьте смещение
-                            treeLayout.setTranslationX(initialTranslationX);
-                            treeLayout.setTranslationY(initialTranslationY);
-                        }
-                        else if (!isScaling) {
-                            float offsetX = event.getRawX() - initialTouchX;
-                            float offsetY = event.getRawY() - initialTouchY;
 
-                            treeLayout.setTranslationX(initialTranslationX + offsetX);
-                            treeLayout.setTranslationY(initialTranslationY + offsetY);
-                        }
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        isScaling = false;
-                        //действия при отпускании пальца
-                        break;
-                }
-
-                return true;
-            }
-        });
-
-        praporImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(praporImageButton);
-                // Очистите CustomLinearLayout перед добавлением нового содержимого
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-
-                // Включите макет из PraporActivity в CustomLinearLayout
-//                View praporLayout = getLayoutInflater().inflate(R.layout.activity_prapor, null);
-//                treeLayout.addView(praporLayout);
-                Intent intent = new Intent(MainActivity.this, PraporActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        terapevtImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(terapevtImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        skupshikImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(skupshikImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        lijnikImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(lijnikImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        mirImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(mirImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        mechanikImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(mechanikImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        baraholImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(baraholImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        egerImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(egerImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        smotritelImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(smotritelImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        resetImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                animateClick(resetImageButton);
-                CustomLinearLayout treeLayout = findViewById(R.id.treeLayout);
-                treeLayout.removeAllViews();
-            }
-        });
-
-        scaleGestureDetector = new ScaleGestureDetector(this, new ScaleGestureDetector.OnScaleGestureListener() {
-            private float scaleFactor = 1.0f;
-            private float maxScale = 1.2f;
-            private float minScale = 0.5f;
-
-            @Override
-            public boolean onScale(ScaleGestureDetector detector) {
-                scaleFactor *= detector.getScaleFactor();
-                // Ограничьте масштабирование в заданных пределах
-                scaleFactor = Math.max(minScale, Math.min(scaleFactor, maxScale));
-
-                // Примените масштабирование к treeLayout
-                treeLayout.setScaleX(scaleFactor);
-                treeLayout.setScaleY(scaleFactor);
-
-                return true;
-            }
-
-            @Override
-            public boolean onScaleBegin(ScaleGestureDetector detector) {
-                return true;
-            }
-
-            @Override
-            public void onScaleEnd(ScaleGestureDetector detector) {
-                // Код, который нужно выполнить после завершения масштабирования
-            }
-        });
 
     }
 
@@ -296,43 +120,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-    private void animateClick(View view) {
-        Animation animation = new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
-                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(100);
-        animation.setRepeatCount(1);
-        animation.setRepeatMode(Animation.REVERSE);
-        view.startAnimation(animation);
-    }
-
-    private void moveButtonsToLeft() {
-        int translationX = -200; // Смещение кнопок влево на 200 пикселей
-        praporImageButton.animate().translationXBy(translationX);
-        terapevtImageButton.animate().translationXBy(translationX);
-        skupshikImageButton.animate().translationXBy(translationX);
-        lijnikImageButton.animate().translationXBy(translationX);
-        mirImageButton.animate().translationXBy(translationX);
-        mechanikImageButton.animate().translationXBy(translationX);
-        baraholImageButton.animate().translationXBy(translationX);
-        egerImageButton.animate().translationXBy(translationX);
-        smotritelImageButton.animate().translationXBy(translationX);
-        resetImageButton.animate().translationXBy(translationX);
-    }
-
-    private void moveButtonsToRight() {
-        int translationX = 200; // Смещение кнопок вправо на 200 пикселей
-        praporImageButton.animate().translationXBy(translationX);
-        terapevtImageButton.animate().translationXBy(translationX);
-        skupshikImageButton.animate().translationXBy(translationX);
-        lijnikImageButton.animate().translationXBy(translationX);
-        mirImageButton.animate().translationXBy(translationX);
-        mechanikImageButton.animate().translationXBy(translationX);
-        baraholImageButton.animate().translationXBy(translationX);
-        egerImageButton.animate().translationXBy(translationX);
-        smotritelImageButton.animate().translationXBy(translationX);
-        resetImageButton.animate().translationXBy(translationX);
-    }
-
 }
 

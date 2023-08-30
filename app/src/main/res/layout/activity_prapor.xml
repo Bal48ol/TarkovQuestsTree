@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,10 +8,24 @@
     tools:context=".PraporActivity">
 
     <com.example.tarkovtreequest.CustomLinearLayout
-        android:id="@+id/treeContainer"
+        android:id="@+id/treeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:layout_gravity="center"
+        android:hardwareAccelerated="true"
         android:orientation="vertical">
     </com.example.tarkovtreequest.CustomLinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/traderLayoutPrapor"
+        android:layout_width="75dp"
+        android:layout_height="match_parent"
+        android:gravity="start"
+        android:padding="5dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:orientation="vertical">
+    </LinearLayout>
+
+</FrameLayout>
