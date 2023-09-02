@@ -87,53 +87,70 @@ public class ButtonClickListener implements View.OnClickListener {
         }
         else if (view.getId() == R.id.praporImageButton) {
             animateClick(praporImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.terapevtImageButton) {
             animateClick(terapevtImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.skupshikImageButton) {
             animateClick(skupshikImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.lijnikImageButton) {
             animateClick(lijnikImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.mirImageButton) {
             animateClick(mirImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.mechanikImageButton) {
             animateClick(mechanikImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.baraholImageButton) {
             animateClick(baraholImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.egerImageButton) {
             animateClick(egerImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.smotritelImageButton) {
             animateClick(smotritelImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+            if (!(context instanceof PraporActivity)) {
+                Intent intent = new Intent(context, PraporActivity.class);
+                context.startActivity(intent);
+            }
         }
         else if (view.getId() == R.id.resetImageButton) {
             animateClick(resetImageButton);
-            Intent intent = new Intent(context, PraporActivity.class);
-            context.startActivity(intent);
+
         }
     }
 

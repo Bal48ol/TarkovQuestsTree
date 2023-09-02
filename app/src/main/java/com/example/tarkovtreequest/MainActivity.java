@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private FrameLayout mainLayout;
+    private LinearLayout mainLayout;
     private ImageButton burgerImageButton;
     private ImageButton praporImageButton;
     private ImageButton terapevtImageButton;
@@ -133,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
                 imageButton.setImageBitmap(scaledBitmap);
             }
         }
+        //else не картинку скрываем
     }
 }
 
