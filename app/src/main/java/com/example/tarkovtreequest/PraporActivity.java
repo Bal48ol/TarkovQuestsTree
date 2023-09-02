@@ -297,7 +297,7 @@ public class PraporActivity extends AppCompatActivity {
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 
                 int buttonSize = Math.min(imageButton.getWidth(), imageButton.getHeight());
-                int newButtonSize = (int) (buttonSize / 1.3);
+                int newButtonSize = (int) (buttonSize / 1.5);
 
                 Bitmap scaledBitmap = Bitmap.createBitmap(newButtonSize, newButtonSize, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(scaledBitmap);
@@ -329,10 +329,13 @@ public class PraporActivity extends AppCompatActivity {
 
         LinearLayout childLayout = childView.findViewById(R.id.childLayout); // Получаем ссылку на childLayout из раздутого представления
 
-        TextView titleTextView = childView.findViewById(R.id.titleTextView);
+        ImageView onWorkImageView = childLayout.findViewById(R.id.onWorkImageView);
+        ImageView doneImageView = childLayout.findViewById(R.id.doneImageView);
+
+        TextView titleTextView = childLayout.findViewById(R.id.titleTextView);
         titleTextView.setText(name);
 
-        TextView descriptionTextView = childView.findViewById(R.id.descriptionTextView);
+        TextView descriptionTextView = childLayout.findViewById(R.id.descriptionTextView);
         descriptionTextView.setText(description);
 
         childLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.background));
@@ -347,23 +350,31 @@ public class PraporActivity extends AppCompatActivity {
         Log.d("createChild", "backgroundState: " + backgroundState);
         if (backgroundState == 1) {
             childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
+            onWorkImageView.setVisibility(View.GONE);
+            doneImageView.setVisibility(View.VISIBLE);
         } else {
             childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
+            onWorkImageView.setVisibility(View.VISIBLE);
+            doneImageView.setVisibility(View.GONE);
         }
 
         childLayout.setOnClickListener(new View.OnClickListener() {
-            boolean isBackgroundDone;
+            boolean isBackgroundDone; // todo объявить чуть выше
             @Override
             public void onClick(View v) {
                 if (isBackgroundDone) {
                     childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
                     isBackgroundDone = false;
+                    onWorkImageView.setVisibility(View.VISIBLE);
+                    doneImageView.setVisibility(View.GONE);
                     dbhelp.updateBackgroundState(name, 0); // Сохранение состояния фона в базе данных: 0 - фон не выбран
 
                 }
                 else {
                     childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
                     isBackgroundDone = true;
+                    onWorkImageView.setVisibility(View.GONE);
+                    doneImageView.setVisibility(View.VISIBLE);
                     dbhelp.updateBackgroundState(name, 1); // Сохранение состояния фона в базе данных: 1 - фон выбран
                 }
             }

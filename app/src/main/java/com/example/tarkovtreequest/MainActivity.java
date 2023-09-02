@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 
                 int buttonSize = Math.min(imageButton.getWidth(), imageButton.getHeight());
-                int newButtonSize = (int) (buttonSize / 1.3);
+                int newButtonSize = (int) (buttonSize / 1.5); //1.3
 
                 Bitmap scaledBitmap = Bitmap.createBitmap(newButtonSize, newButtonSize, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(scaledBitmap);

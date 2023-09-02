@@ -26,29 +26,57 @@
         android:id="@+id/childLayout"
         android:layout_width="150dp"
         android:layout_height="80dp"
-        android:padding="10dp"
-        android:gravity="center"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/titleTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asdasda"
-            android:gravity="center"
-            android:textSize="10sp"
-            android:textColor="@android:color/black"/>
+        <ImageView
+            android:id="@+id/doneImageView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/done"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone">
+        </ImageView>
 
-        <TextView
-            android:id="@+id/descriptionTextView"
+        <ImageView
+            android:id="@+id/onWorkImageView"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/cross"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp">
+        </ImageView>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="asdasda"
-            android:gravity="center"
-            android:textSize="8sp"
-            android:textColor="@android:color/darker_gray"/>
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/titleTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdasda"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="@android:color/black"/>
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="asdasda"
+                android:gravity="center"
+                android:textSize="8sp"
+                android:textColor="@android:color/darker_gray"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
