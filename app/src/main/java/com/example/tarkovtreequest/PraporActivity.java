@@ -339,7 +339,6 @@ public class PraporActivity extends AppCompatActivity {
         descriptionTextView.setText(description);
 
         childLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.background));
-        childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
 
         ImageView arrowImageView = childView.findViewById(R.id.arrowImageView);
         if (isFirstItem) {
@@ -348,6 +347,7 @@ public class PraporActivity extends AppCompatActivity {
 
         int backgroundState = dbhelp.getBackgroundState(name); // Получаем состояние фона из базы данных
         Log.d("createChild", "backgroundState: " + backgroundState);
+        dbhelp.insertChildName(name, 0);
         if (backgroundState == 1) {
             childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
             onWorkImageView.setVisibility(View.GONE);
@@ -367,7 +367,7 @@ public class PraporActivity extends AppCompatActivity {
                     isBackgroundDone = false;
                     onWorkImageView.setVisibility(View.VISIBLE);
                     doneImageView.setVisibility(View.GONE);
-                    dbhelp.updateBackgroundState(name, 0); // Сохранение состояния фона в базе данных: 0 - фон не выбран
+                    dbhelp.updateBackgroundState(name, 0); // 0 - фон не выбран
 
                 }
                 else {
@@ -375,7 +375,7 @@ public class PraporActivity extends AppCompatActivity {
                     isBackgroundDone = true;
                     onWorkImageView.setVisibility(View.GONE);
                     doneImageView.setVisibility(View.VISIBLE);
-                    dbhelp.updateBackgroundState(name, 1); // Сохранение состояния фона в базе данных: 1 - фон выбран
+                    dbhelp.updateBackgroundState(name, 1); // 1 - фон выбран
                 }
             }
         });

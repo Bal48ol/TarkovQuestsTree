@@ -82,75 +82,135 @@ public class ButtonClickListener implements View.OnClickListener {
                     }
                     isAnimating = false;
                 }
-            }, 300);
+            }, 200);
             isAnimating = true;
         }
         else if (view.getId() == R.id.praporImageButton) {
             animateClick(praporImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.terapevtImageButton) {
             animateClick(terapevtImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.skupshikImageButton) {
             animateClick(skupshikImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.lijnikImageButton) {
             animateClick(lijnikImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.mirImageButton) {
             animateClick(mirImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.mechanikImageButton) {
             animateClick(mechanikImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.baraholImageButton) {
             animateClick(baraholImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.egerImageButton) {
             animateClick(egerImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.smotritelImageButton) {
             animateClick(smotritelImageButton);
-            if (!(context instanceof PraporActivity)) {
-                Intent intent = new Intent(context, PraporActivity.class);
-                context.startActivity(intent);
-            }
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!(context instanceof PraporActivity)) {
+                        Intent intent = new Intent(context, PraporActivity.class);
+                        context.startActivity(intent);
+                    }
+                }
+            }, 200);
         }
         else if (view.getId() == R.id.resetImageButton) {
             animateClick(resetImageButton);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
 
+                }
+            }, 200);
         }
     }
 
