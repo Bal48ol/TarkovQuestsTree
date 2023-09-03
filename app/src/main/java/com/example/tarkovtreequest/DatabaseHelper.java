@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "tarkov_tree.db";
-    private static final int DATABASE_VERSION = 3;
-    private static final String TABLE_NAME = "childs";
-    private static final String COLUMN_NAME = "name";
-    private static final String COLUMN_BACKGROUND_STATE = "background_state";
+    private static final int DATABASE_VERSION = 1;
+    private static final String TABLE_NAME = "quests";
+    private static final String COLUMN_NAME = "quest";
+    private static final String COLUMN_BACKGROUND_STATE = "done";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,13 +31,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertChildName(String name, int backgroundState) {
+    public void insertChildName(Child child) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, name);
-        values.put(COLUMN_BACKGROUND_STATE, backgroundState);
+        values.put(COLUMN_NAME, child.getName());
+        values.put(COLUMN_BACKGROUND_STATE, child.getBackgroundState());
         db.insert(TABLE_NAME, null, values);
         db.close();
+    }
+
+    public Child getChildByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Child child = null;
+
+        Cursor cursor = db.query(TABLE_NAME, null,
+                COLUMN_NAME + "=?", new String[]{name}, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            String childName = cursor.getString(cursor.getColumnIndex(COLUMN_NAME));
+            int backgroundState = cursor.getInt(cursor.getColumnIndex(COLUMN_BACKGROUND_STATE));
+            child = new Child(childName, backgroundState);
+        }
+
+        cursor.close();
+        db.close();
+
+        return child;
     }
 
     public int getBackgroundState(String name) {
@@ -57,11 +76,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return backgroundState;
     }
 
-    public void updateBackgroundState(String name, int newBackgroundState) {
+    public void updateBackgroundState(Child child) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_BACKGROUND_STATE, newBackgroundState);
-        db.update(TABLE_NAME, values, COLUMN_NAME + "=?", new String[]{name});
+        values.put(COLUMN_BACKGROUND_STATE, child.getBackgroundState());
+        db.update(TABLE_NAME, values, COLUMN_NAME + "=?", new String[]{child.getName()});
         db.close();
     }
 

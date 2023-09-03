@@ -1,9 +1,8 @@
 package com.example.tarkovtreequest;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,16 +14,12 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -35,7 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PraporActivity extends AppCompatActivity {
-    private LinearLayout traderLayoutPrapor;
     private ImageButton burgerImageButton;
     private ImageButton praporImageButton;
     private ImageButton terapevtImageButton;
@@ -47,8 +41,6 @@ public class PraporActivity extends AppCompatActivity {
     private ImageButton egerImageButton;
     private ImageButton smotritelImageButton;
     private ImageButton resetImageButton;
-    private LinearLayout yourParentView;
-    private FrameLayout praporLayout;
     private Context context;
     private DatabaseHelper dbhelp;
 
@@ -57,9 +49,9 @@ public class PraporActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prapor);
 
-        traderLayoutPrapor = findViewById(R.id.traderLayoutPrapor);
-        yourParentView = findViewById(R.id.your_parent_view);
-        praporLayout = findViewById(R.id.praporLayout);
+        LinearLayout traderLayoutPrapor = findViewById(R.id.traderLayoutPrapor);
+        LinearLayout yourParentView = findViewById(R.id.your_parent_view);
+        FrameLayout praporLayout = findViewById(R.id.praporLayout);
 
         context = this;
         dbhelp = new DatabaseHelper(this);
@@ -292,8 +284,8 @@ public class PraporActivity extends AppCompatActivity {
         if (hasFocus) {
             for (int i = 0; i < imageButtons.size(); i++) {
                 ImageButton imageButton = imageButtons.get(i);
-                int resourceId = getResources().getIdentifier("img" + (i + 1), "drawable", getPackageName());
-                Drawable drawable = getResources().getDrawable(resourceId);
+                @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier("img" + (i + 1), "drawable", getPackageName());
+                @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = getResources().getDrawable(resourceId);
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 
                 int buttonSize = Math.min(imageButton.getWidth(), imageButton.getHeight());
@@ -311,10 +303,9 @@ public class PraporActivity extends AppCompatActivity {
     }
 
     private void hideArrowImageView(LinearLayout container) {
-        ViewGroup containerGroup = (ViewGroup) container;
-        int childCount = containerGroup.getChildCount();
+        int childCount = ((ViewGroup) container).getChildCount();
         for (int i = 1; i < childCount; i++) {
-            View child = containerGroup.getChildAt(i);
+            View child = ((ViewGroup) container).getChildAt(i);
             LinearLayout childContainer = (LinearLayout) child;
             ImageView arrowImageView = childContainer.findViewById(R.id.arrowImageView);
             arrowImageView.setVisibility(View.GONE);
@@ -325,7 +316,7 @@ public class PraporActivity extends AppCompatActivity {
 
     private LinearLayout createChildView(String name, String description, boolean isFirstItem) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        LinearLayout childView = (LinearLayout) inflater.inflate(R.layout.child_view, null);
+        @SuppressLint("InflateParams") LinearLayout childView = (LinearLayout) inflater.inflate(R.layout.child_view, null);
 
         LinearLayout childLayout = childView.findViewById(R.id.childLayout); // Получаем ссылку на childLayout из раздутого представления
 
@@ -345,40 +336,49 @@ public class PraporActivity extends AppCompatActivity {
             arrowImageView.setVisibility(View.GONE);
         }
 
-        int backgroundState = dbhelp.getBackgroundState(name); // Получаем состояние фона из базы данных
+        Child child = new Child(name, 0);
+
+        int backgroundState = dbhelp.getBackgroundState(name);
         Log.d("createChild", "backgroundState: " + backgroundState);
-        dbhelp.insertChildName(name, 0);
+
+        Child existingChild = dbhelp.getChildByName(name);
+        if (existingChild == null) {
+            dbhelp.insertChildName(child);
+        }
+
         if (backgroundState == 1) {
             childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
             onWorkImageView.setVisibility(View.GONE);
             doneImageView.setVisibility(View.VISIBLE);
+            child.setBackgroundState(1);
         } else {
             childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
             onWorkImageView.setVisibility(View.VISIBLE);
             doneImageView.setVisibility(View.GONE);
+            child.setBackgroundState(0);
         }
 
         childLayout.setOnClickListener(new View.OnClickListener() {
-            boolean isBackgroundDone; // todo объявить чуть выше
             @Override
             public void onClick(View v) {
-                if (isBackgroundDone) {
+                int currentBackgroundState = child.getBackgroundState();
+
+                if (currentBackgroundState == 1) {
                     childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
-                    isBackgroundDone = false;
                     onWorkImageView.setVisibility(View.VISIBLE);
                     doneImageView.setVisibility(View.GONE);
-                    dbhelp.updateBackgroundState(name, 0); // 0 - фон не выбран
-
-                }
-                else {
+                    child.setBackgroundState(0);
+                } else {
                     childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
-                    isBackgroundDone = true;
                     onWorkImageView.setVisibility(View.GONE);
                     doneImageView.setVisibility(View.VISIBLE);
-                    dbhelp.updateBackgroundState(name, 1); // 1 - фон выбран
+                    child.setBackgroundState(1);
                 }
+
+                dbhelp.updateBackgroundState(child);
             }
         });
+
         return childView;
     }
 }
