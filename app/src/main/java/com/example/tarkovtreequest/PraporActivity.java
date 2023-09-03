@@ -358,25 +358,22 @@ public class PraporActivity extends AppCompatActivity {
             child.setBackgroundState(0);
         }
 
-        childLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentBackgroundState = child.getBackgroundState();
+        childLayout.setOnClickListener(v -> {
+            int currentBackgroundState = child.getBackgroundState();
 
-                if (currentBackgroundState == 1) {
-                    childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
-                    onWorkImageView.setVisibility(View.VISIBLE);
-                    doneImageView.setVisibility(View.GONE);
-                    child.setBackgroundState(0);
-                } else {
-                    childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
-                    onWorkImageView.setVisibility(View.GONE);
-                    doneImageView.setVisibility(View.VISIBLE);
-                    child.setBackgroundState(1);
-                }
-
-                dbhelp.updateBackgroundState(child);
+            if (currentBackgroundState == 1) {
+                childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#5C613B")));
+                onWorkImageView.setVisibility(View.VISIBLE);
+                doneImageView.setVisibility(View.GONE);
+                child.setBackgroundState(0);
+            } else {
+                childLayout.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#535353")));
+                onWorkImageView.setVisibility(View.GONE);
+                doneImageView.setVisibility(View.VISIBLE);
+                child.setBackgroundState(1);
             }
+
+            dbhelp.updateBackgroundState(child);
         });
 
         return childView;

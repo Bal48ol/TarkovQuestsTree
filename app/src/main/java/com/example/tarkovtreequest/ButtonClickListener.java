@@ -9,9 +9,11 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import androidx.core.content.ContextCompat;
+
 
 public class ButtonClickListener implements View.OnClickListener {
-    private LinearLayout traderLayout;
+    private final LinearLayout traderLayout;
     private ImageButton burgerImageButton;
     private ImageButton praporImageButton;
     private ImageButton terapevtImageButton;
@@ -25,7 +27,7 @@ public class ButtonClickListener implements View.OnClickListener {
     private ImageButton resetImageButton;
     private boolean isAnimating = false;
     private boolean flag = false;
-    private Context context;
+    private final Context context;
 
     // Конструктор, принимающий ссылку на родительский элемент макета
     public ButtonClickListener(LinearLayout traderLayout, Context context) {
@@ -121,6 +123,7 @@ public class ButtonClickListener implements View.OnClickListener {
                         Intent intent = new Intent(context, PraporActivity.class);
                         context.startActivity(intent);
                     }
+
                 }
             }, 200);
         }

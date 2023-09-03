@@ -1,9 +1,8 @@
 package com.example.tarkovtreequest;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -15,23 +14,16 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private LinearLayout mainLayout;
     private ImageButton burgerImageButton;
     private ImageButton praporImageButton;
     private ImageButton terapevtImageButton;
@@ -43,16 +35,14 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton egerImageButton;
     private ImageButton smotritelImageButton;
     private ImageButton resetImageButton;
-    private LinearLayout traderLayoutMain;
-    private Button rustoreButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mainLayout = findViewById(R.id.mainLayout);
-        traderLayoutMain = findViewById(R.id.traderLayoutMain);
+        LinearLayout mainLayout = findViewById(R.id.mainLayout);
+        LinearLayout traderLayoutMain = findViewById(R.id.traderLayoutMain);
 
         View traderLayout = getLayoutInflater().inflate(R.layout.trader_layout, traderLayoutMain, false);
         traderLayoutMain.addView(traderLayout);
@@ -86,14 +76,15 @@ public class MainActivity extends AppCompatActivity {
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
 
-        rustoreButton = findViewById(R.id.rustoreButton);
-        rustoreButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        Button rustoreButton = findViewById(R.id.rustoreButton);
+        rustoreButton.setOnClickListener(v -> {
+            animateClick(rustoreButton);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
                 String url = "https://apps.rustore.ru/app/com.example.tarkovtreequest";
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
-            }
+            }, 200);
         });
     }
 
@@ -117,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
         if (hasFocus) {
             for (int i = 0; i < imageButtons.size(); i++) {
                 ImageButton imageButton = imageButtons.get(i);
-                int resourceId = getResources().getIdentifier("img" + (i + 1), "drawable", getPackageName());
-                Drawable drawable = getResources().getDrawable(resourceId);
+                @SuppressLint("DiscouragedApi") int resourceId = getResources().getIdentifier("img" + (i + 1), "drawable", getPackageName());
+                @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = getResources().getDrawable(resourceId);
                 Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
 
                 int buttonSize = Math.min(imageButton.getWidth(), imageButton.getHeight());
@@ -134,6 +125,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         //else не картинку скрываем
+    }
+    private void animateClick(View view) {
+        Animation animation = new ScaleAnimation(1.0f, 0.9f, 1.0f, 0.9f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        animation.setDuration(100);
+        animation.setRepeatCount(1);
+        animation.setRepeatMode(Animation.REVERSE);
+        view.startAnimation(animation);
     }
 }
 
